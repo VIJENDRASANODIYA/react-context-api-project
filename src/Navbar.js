@@ -1,35 +1,28 @@
 
 import { Link } from "react-router-dom"
-import myContext from "./myContext"
-import { useContext } from "react"
+
+import { useSelector,useDispatch } from 'react-redux';
+import { ChangeDark } from "./action";
 function Navbar() {
-    
-    const { isDark, setIsDark } = useContext(myContext);
-  const handleClick = () => {
-    setIsDark(!isDark);
-  };
 
-   
-    return (
-        <div>
-            <div //onClick={() => setTheme(!theme)}
-                className={`navbar navbar-expand-lg navbar-${
-                    !isDark ? "light" : "dark"
-                  } bg-${!isDark ? "light" : "dark"}`}
-                style={{
-                    backgroundColor:  !isDark ? "black" : "white",
-                    color:  !isDark ? "white" : "black"
-               }}
-                >
-                
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to="/Contect">Contect</Link></li>
-                <li><Link to="/Service">Service</Link></li>
-                <button onClick={handleClick}>Toggle_button</button>
-            </div>
+  const changeThemeApp=useSelector((state)=>state.darkReducer)
+  const dispatch=useDispatch()
+  
 
 
-        </div>
-    )
+  return (
+    <div style={{ backgroundColor: `${changeThemeApp ? "black" : "white"}`,
+    color: `${changeThemeApp ? "white" : "black"}`,}}>
+      <div>
+
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to="/Contect">Contect</Link></li>
+        <li><Link to="/Service">Service</Link></li>
+        <button onClick={()=>dispatch(ChangeDark())}>Toggle_button</button>
+      </div>
+
+
+    </div>
+  )
 }
 export default Navbar

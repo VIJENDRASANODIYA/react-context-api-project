@@ -1,12 +1,13 @@
-import myContext from "./myContext";
-import { useContext } from "react";
+
+import { useSelector} from 'react-redux';
 
 function Service(){
-  const { isDark } = useContext(myContext);
+  const changeThemeApp=useSelector((state)=>state.darkReducer)
+
     return (
         <div style={{
-          backgroundColor: `${isDark ? "black" : "white"}`,
-          color: `${isDark ? "lightgreen" : "black"}`,
+          backgroundColor: `${changeThemeApp ? "black" : "white"}`,
+          color: `${changeThemeApp ? "white" : "black"}`,
         }}>
             
          <h1>Our service is not available</h1>

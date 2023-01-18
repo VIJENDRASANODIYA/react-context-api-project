@@ -1,15 +1,15 @@
-// import Navbar from "./Navbar"
-import myContext from "./myContext";
-// import react from "react";
-import { useContext } from "react";
+import { useSelector } from 'react-redux';
+
+
 
 
 function Home(){
-    const { isDark } = useContext(myContext);
+    const changeThemeApp=useSelector((state)=>state.darkReducer)
+    
     return (
         <div  style={{
-            backgroundColor: `${isDark ? "black" : "white"}`,
-            color: `${isDark ? "lightgreen" : "black"}`,
+            backgroundColor: `${changeThemeApp ? "black" : "white"}`,
+            color: `${changeThemeApp ? "white" : "black"}`,
           }}>
             
             
